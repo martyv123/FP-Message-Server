@@ -6,6 +6,8 @@
 @desc Messages list HTML
 -->
 
-<h2>Message Log</h2>
-<nav><a routerLink="" class="link">Home</a></nav>
-<router-outlet></router-outlet>
+<div class="main">
+    <h2><b>Message Log</b></h2>
+    <nav><a routerLink="/requests" class="link">Home</a></nav>
+    {{ requests.messages }}
+</div>

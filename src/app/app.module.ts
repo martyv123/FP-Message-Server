@@ -1,3 +1,11 @@
+/**
+ * @author Marty Vo
+ * @email marty.vo@abcam.com
+ * @create date 2020-01-28 11:50:45
+ * @modify date 2020-01-28 11:50:45
+ * @desc [description]
+ */
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,7 +36,7 @@ import { RequestsComponent } from './requests/requests.component';
     MatDialogModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [RequestsComponent],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })

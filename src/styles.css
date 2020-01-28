@@ -37,7 +37,7 @@ body {
     display: grid;
     justify-items: center;
     align-items: left;
-    background-color: #4b4343;
+    background-color: #5b5666;
   }
 body, input[text], button {
     font-weight: heavier;

@@ -5,9 +5,9 @@
  * @modify date 2020-01-28 10:26:56
  * @desc Class for post/get requests
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MessageFP } from '../classes/MessageFP';
 import { MessageFPList } from '../classes/MessageFPList';
@@ -19,9 +19,8 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  message: MessageFP;
-  messages: MessageFPList;
-  title = 'message-service';  
+  @Input() message: MessageFP;
+  @Input() messages: MessageFPList;  
 
   constructor(private messageService: MessageService, private matDialog: MatDialog, private messageAlert: MatSnackBar) {}
 
@@ -42,7 +41,7 @@ export class RequestsComponent implements OnInit {
   }
 
   /**
-   * Retrieves the list of messages.
+   * Sends GET request to server for message list
    */
   getMessages(): void {
     this.messageService.getMessages().subscribe(messages => {
@@ -51,9 +50,16 @@ export class RequestsComponent implements OnInit {
   }
 
   /**
+   * Retrieve stored list of messages
+   */
+  getMessageList(): MessageFPList {
+    return this.messages;
+  }
+
+  /**
    * Opens the snackbar message
    */
-  openSnackBar() {
+  openSnackBar(): void {
     this.messageAlert.open("Message has been sent.", "Dismiss");
   }
 
