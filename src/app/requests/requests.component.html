@@ -1,0 +1,19 @@
+<!--
+@author Marty Vo
+@email marty.vo@abcam.com
+@create date 2020-01-28 10:27:00
+@modify date 2020-01-28 10:27:00
+@desc Page for post/get requests
+-->
+
+<div class = "main">
+
+    <h2><b>Post request</b></h2>
+    <p>Title of message:<input matInput placeholder="Attention:" id="title"></p>
+    <p>Body of message:<input matInput placeholder="Some message..." id="body"></p>
+    <p><button mat-raised-button id="http" (click)="addMessage(); openSnackBar()">Send message</button></p>
+
+    <h2><b>Get requests</b>
+        <p><button mat-raised-button id="http" (click)="getMessages()" onclick="location.href='http://localhost:4200/messages'">Get messages</button></p>
+    </h2>
+</div>
