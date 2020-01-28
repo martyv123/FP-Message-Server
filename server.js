@@ -66,7 +66,7 @@ app.get('/sse', (req, res) => {
   setInterval(() => {
     res.write('data:' + JSON.stringify(messages[0], null, 4));
     res.write('\n\n');
-  }, 1000);
+  }, 3000);
 });
 
 app.listen(port, () => {
