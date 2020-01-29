@@ -6,8 +6,9 @@
  * @desc Class for messages list
  */
 import { Component, OnInit } from '@angular/core';
-import { RequestsComponent } from '../requests/requests.component';
 import { MessageFPList } from '../classes/MessageFPList';
+import { MessageService } from '../services/message.service';
+
 
 @Component({
   selector: 'app-messages-list',
@@ -15,17 +16,12 @@ import { MessageFPList } from '../classes/MessageFPList';
   styleUrls: ['./messages-list.component.css']
 })
 export class MessagesListComponent implements OnInit {
+  messages: MessageFPList;
 
-  constructor(private requests: RequestsComponent) {
+  constructor(private messageService: MessageService) {
   }
 
   ngOnInit() {
-  }
 
-  /**
-   * Gets the list of messages.
-   */
-  getMessages(): MessageFPList {
-    return this.requests.messages;
   }
 }

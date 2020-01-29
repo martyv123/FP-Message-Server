@@ -11,7 +11,7 @@
  * 
  * @param {string} titleMsg - The title of the message.
  * @param {string} bodyMsg - The body of the message.
- * @param {string} active - The status of the message
+ * @param {boolean} active - The status of the message
  */
 export class MessageFP {
   titleMsg: string;

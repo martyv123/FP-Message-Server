@@ -47,7 +47,7 @@ app.post('/message', (req, res) => {
   console.log('*** ' + msg + ' ***');
 });
 
-// retrieve the message log - as of 1/22/20, same functionality as SSE
+// retrieve the message log 
 app.get('/messages', (req, res) => {
   res.json(messages);
   console.log("Request for messages received. See below for message log.");

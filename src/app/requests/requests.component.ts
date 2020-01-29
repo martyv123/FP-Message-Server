@@ -5,7 +5,7 @@
  * @modify date 2020-01-28 10:26:56
  * @desc Class for post/get requests
  */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -19,12 +19,20 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  @Input() message: MessageFP;
-  @Input() messages: MessageFPList;  
+  message: MessageFP;
+  messages: MessageFPList;
+  @Output() messageEvent = new EventEmitter<MessageFPList>();  
 
   constructor(private messageService: MessageService, private matDialog: MatDialog, private messageAlert: MatSnackBar) {}
 
   ngOnInit() {}
+
+  /**
+   * Send messages to message log
+   */
+  sendMessages() {
+    this.messageEvent.emit(this.messages);
+  }
 
   /**
    * Adds a message to the list of messages.
@@ -38,6 +46,7 @@ export class RequestsComponent implements OnInit {
     this.messageService.addMessage(message).subscribe(message => {
       this.message = message;
     });
+    this.sendMessages();
   }
 
   /**
@@ -47,13 +56,6 @@ export class RequestsComponent implements OnInit {
     this.messageService.getMessages().subscribe(messages => {
       this.messages = messages;
     });
-  }
-
-  /**
-   * Retrieve stored list of messages
-   */
-  getMessageList(): MessageFPList {
-    return this.messages;
   }
 
   /**

@@ -36,7 +36,7 @@ import { RequestsComponent } from './requests/requests.component';
     MatDialogModule,
     MatSnackBarModule
   ],
-  providers: [RequestsComponent],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })
