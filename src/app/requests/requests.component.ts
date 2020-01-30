@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MessageFP } from '../classes/MessageFP';
-import { MessageFPList } from '../classes/MessageFPList';
 import { MessageService } from '../services/message.service';
 
 @Component({
@@ -19,34 +18,19 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  message: MessageFP;
-  messages: MessageFPList;
-  @Output() messageEvent = new EventEmitter<MessageFPList>();  
+  messages: MessageFP[]; 
 
   constructor(private messageService: MessageService, private matDialog: MatDialog, private messageAlert: MatSnackBar) {}
 
   ngOnInit() {}
 
   /**
-   * Send messages to message log
-   */
-  sendMessages() {
-    this.messageEvent.emit(this.messages);
-  }
-
-  /**
    * Adds a message to the list of messages.
    */
-  addMessage(): void {
-    let titleHTML = <HTMLInputElement>document.getElementById("title");
-    let bodyHTML = <HTMLInputElement>document.getElementById("body");
-    let titleMsg = titleHTML.value;
-    let bodyMsg = bodyHTML.value;
-    let message = new MessageFP(titleMsg, bodyMsg);
+  addMessage(message: MessageFP): void {
     this.messageService.addMessage(message).subscribe(message => {
-      this.message = message;
+      this.messages.push(message);
     });
-    this.sendMessages();
   }
 
   /**

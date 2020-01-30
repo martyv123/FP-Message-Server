@@ -12,7 +12,6 @@ import { Observable, of, Subject } from 'rxjs';
 
 import { MessageFP } from '../classes/MessageFP';
 import { MessageFPList } from '../classes/MessageFPlist';
-import { messages } from '../data/messages';
 
 /**
  * Class representing a message service.
@@ -50,7 +49,7 @@ export class MessageService {
    * @param message - The message to be added and displayed.
    */
   addMessage(message: MessageFP): Observable<MessageFP> {
-    messages.addMessage(message);
+    this.messages.addMessage(message);
 
     return this.http.post<MessageFP>('http://localhost:5000/message', message);
   }

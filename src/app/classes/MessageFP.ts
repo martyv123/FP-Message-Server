@@ -13,7 +13,25 @@
  * @param {string} bodyMsg - The body of the message.
  * @param {boolean} active - The status of the message
  */
-export class MessageFP {
+export interface MessageFP {
+  titleMsg: string;
+  bodyMsg: string;
+  active: boolean;
+
+  /**
+   * Change the status of the message.
+   */
+  status(active: boolean): void;
+  }
+
+/**
+ * Represents a message from the robot.
+ * 
+ * @param {string} titleMsg - The title of the message.
+ * @param {string} bodyMsg - The body of the message.
+ * @param {string} active - The status of the message
+ */
+export class MessageRobotFP implements MessageFP {
   titleMsg: string;
   bodyMsg: string;
   active: boolean = false;
@@ -23,30 +41,8 @@ export class MessageFP {
     this.bodyMsg = bodyMsg;
   }
 
-  /**
-   * Changes the status of the message.
-   * 
-   * @param {boolean} status - The status of the message.
-   */
-  status(status: boolean) {
-    this.active = status;
-  }
-}
-
-/**
- * Represents a message from the robot.
- * 
- * @param {string} titleMsg - The title of the message.
- * @param {string} bodyMsg - The body of the message.
- * @param {string} active - The status of the message
- */
-export class MessageRobotFP extends MessageFP {
-  titleMsg: string;
-  bodyMsg: string;
-  active: boolean = false;
-
-  constructor(titleMsg: string, bodyMsg: string) {
-      super(titleMsg, bodyMsg);
+  status(active: boolean): void {
+    this.active = active;
   }
 }
 
@@ -57,13 +53,18 @@ export class MessageRobotFP extends MessageFP {
  * @param {string} bodyMsg - The body of the message.
  * @param {string} active - The status of the message
  */
-export class MessageCarrierFP extends MessageFP {
+export class MessageCarrierFP implements MessageFP {
     titleMsg: string;
     bodyMsg: string;
     active: boolean = false;
 
     constructor(titleMsg: string, bodyMsg: string) {
-        super(titleMsg, bodyMsg);
+        this.titleMsg = titleMsg;
+        this.bodyMsg = bodyMsg;
+    }
+
+    status(active: boolean): void {
+      this.active = active;
     }
 }
 
@@ -74,12 +75,17 @@ export class MessageCarrierFP extends MessageFP {
  * @param {string} bodyMsg - The body of the message.
  * @param {string} active - The status of the message
  */
-export class MessageLabwareFP extends MessageFP {
+export class MessageLabwareFP implements MessageFP {
   titleMsg: string;
   bodyMsg: string;
   active: boolean = false;
 
   constructor(titleMsg: string, bodyMsg: string) {
-      super(titleMsg, bodyMsg);
+      this.titleMsg = titleMsg;
+      this.bodyMsg = bodyMsg;
+  }
+
+  status(active: boolean): void {
+    this.active = active;
   }
 }
